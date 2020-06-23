@@ -1,0 +1,36 @@
+#include<bits/stdc++.h>
+using namespace std;
+int DP[1001][1001];
+int unbounded_knapsack(int val[] , int wt[] , int n , int W)
+{
+    if(n==0 || W==0)
+        return DP[n][W]=0;
+    if(DP[n][W]!=-1)
+        return DP[n][W];
+    if(wt[n-1]<=W)
+        return DP[n][W]=max(val[n-1]+unbounded_knapsack(val,wt,n,W-wt[n-1]) , unbounded_knapsack(val,wt,n-1,W));
+    else if(wt[n-1]>W)
+        return DP[n][W]=unbounded_knapsack(val,wt,n-1,W);
+}
+
+int main()
+ {
+	//code
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    memset(DP,-1,sizeof(DP));
+	    int n,W;
+	    cin>>n>>W;
+	    int val[n],wt[n];
+	    for(int i=0;i<n;i++)
+	    {
+	        cin>>val[i];
+	        cin>>wt[i];
+	    }
+	    int ans=unbounded_knapsack(val,wt,n,W);
+	    cout<<ans<<endl;
+	}
+	return 0;
+}
