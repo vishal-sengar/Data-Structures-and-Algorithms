@@ -1,0 +1,69 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int r,c,i,j;
+	    cin>>r>>c;
+	    int Mat[r][c];
+	    for(i=0;i<r;i++)
+	    {
+	        for(j=0;j<c;j++)
+	        {
+	            cin>>Mat[i][j];
+	        }
+	    }
+        for(i=0;i<r;i++)
+	    {
+	        for(j=0;j<c;j++)
+	        {
+	            cout<<Mat[i][j]<<" ";
+	        }
+            cout<<endl;
+	    }
+	    int top=0;
+	    int bottom=r-1;
+	    int left=0;
+	    int right=c-1;
+	    
+	    while(1)
+	    {
+	        if(top>bottom)break;
+	    
+	        for(i=left;i<=right;i++)
+	        {
+	            cout<<Mat[top][i];
+	        }
+            top++;
+	        
+	        if(left>right)break;
+	    
+	        for(i=top;i<=bottom;i++)
+	        {
+	            cout<<Mat[i][right];
+	        }
+            right--;
+	        
+	        if(top>bottom)break;
+	    
+	        for(i=right;i>=left;i--)
+	        {
+	            cout<<Mat[bottom][i];
+	        }
+            bottom--;
+	        
+	        if(left>right)break;
+	    
+	        for(i=bottom;i>=top;i--)
+	        {
+	            cout<<Mat[i][left];
+	        }
+            left++;
+	    }
+	}
+	cout<<endl;
+	return 0;
+}
